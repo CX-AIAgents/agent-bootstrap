@@ -1,0 +1,14 @@
+[bootstrap.packages]
+"apt:build-essential" = "latest" # needed for nodejs, ast-outline.
+"apt:libicu-dev" = "latest" # needed for officecli
+"apt:ca-certificates" = "latest"
+"apt:curl" = "latest"
+"apt:git" = "latest"
+"apt:zsh" = "latest"
+"apt:openssh-client" = "latest"
+"apt:fzf" = "latest"
+"apt:rsync" = "latest"
+"apt:lsd" = "latest"
+"apt:tmux" = "latest"
+"apt:unzip" = "latest"
+"apt:bubblewrap" = "latest"

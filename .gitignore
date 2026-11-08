@@ -1,0 +1,5 @@
+# Machine-specific mise configuration and environment selection.
+/config.local.toml
+/config.*.local.toml
+/miserc.local.toml
+/conf.d/*.local.toml

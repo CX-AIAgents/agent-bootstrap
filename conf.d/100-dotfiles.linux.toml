@@ -1,0 +1,7 @@
+# Configure base command paths before activating mise.
+[dotfiles]
+"~/.zshenv/path-all-additions" = { source = "dotfiles/zsh-path.zsh", template = "tera" }
+# fallback bash support, for ai agents who does not use zsh.
+"~/.bash_profile/local-bin" = { line = 'export PATH="$HOME/.local/bin:$PATH"', position = "prepend" }
+"~/.bashrc/local-bin" = { line = 'export PATH="$HOME/.local/bin:$PATH"', position = "prepend" }
+"~/.bash_profile/bashrc" = { line = '[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"' }

@@ -1,0 +1,24 @@
+# The built-in shell activation section does not support PowerShell.
+[tasks.bootstrap]
+depends = ["configure-powershell"]
+
+[tasks.configure-powershell]
+description = "Enable mise in the current user's PowerShell profile"
+shell = "pwsh -NoLogo -NoProfile -Command"
+run = '''
+$ErrorActionPreference = 'Stop'
+$activation = '(mise activate pwsh) | Out-String | Invoke-Expression'
+
+# Resolve the actual profile path, including a redirected Documents folder.
+if (Test-Path -LiteralPath $PROFILE) {
+  $lines = @(Get-Content -LiteralPath $PROFILE)
+  if ($lines.Where({ $_.Trim() -eq $activation }).Count -gt 0) {
+    Write-Host 'PowerShell mise activation is already configured.'
+    exit 0
+  }
+}
+
+New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PROFILE) | Out-Null
+Add-Content -LiteralPath $PROFILE -Value ([Environment]::NewLine + $activation)
+Write-Host 'Configured PowerShell mise activation. Open a new shell to activate it.'
+'''

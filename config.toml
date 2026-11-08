@@ -1,0 +1,3 @@
+# Shared mise settings.
+[settings.self_update]
+auto = true

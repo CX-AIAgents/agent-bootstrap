@@ -1,0 +1,6 @@
+# Scoop must already be installed in the chosen C/D drive location.
+[bootstrap.packages]
+"scoop:git" = "latest"
+"scoop:lsd" = "latest"
+"scoop:fzf" = "latest"
+"scoop:psmux" = "latest"
