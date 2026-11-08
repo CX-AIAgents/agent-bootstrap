@@ -18,7 +18,7 @@ For Windows specific:
 - PowerShell 7 installed either via `winget` or MSIX installer (prefer to enable auto update by windows)
 - `scoop` installed
 - install followings:
-  - vc
+  - latest Visual C++ via `winget install Microsoft.VCRedist.2015+.x64`
   - git via `scoop install git`
 
 For linux specific:
