@@ -4,3 +4,4 @@
 "scoop:lsd" = "latest"
 "scoop:fzf" = "latest"
 "scoop:psmux" = "latest"
+"scoop:starship" = "latest"

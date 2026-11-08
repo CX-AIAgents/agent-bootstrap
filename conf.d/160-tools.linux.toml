@@ -1,4 +1,4 @@
 # Linux/WSL2 additions for 160-tools.toml.
 [tools]
 pi = "latest"
-"pypi:streamrip" = { version = "latest", uvx_args = "--python 3.13" }
+"pypi:streamrip" = { version = "latest", python = "3.13" }
