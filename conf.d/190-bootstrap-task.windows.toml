@@ -2,23 +2,43 @@
 [tasks.bootstrap]
 depends = ["configure-powershell"]
 
+# We can't use dotfiles because $PROFILE location is different depends on installation methods
 [tasks.configure-powershell]
-description = "Enable mise in the current user's PowerShell profile"
+description = "Enable mise and Starship in the current user's PowerShell profile"
 shell = "pwsh -NoLogo -NoProfile -Command"
 run = '''
 $ErrorActionPreference = 'Stop'
 $activation = '(mise activate pwsh) | Out-String | Invoke-Expression'
+$starship = @'
+# Starship prints an error in non-interactive shells with TERM=dumb.
+if ($env:TERM -ne 'dumb') {
+  Invoke-Expression (&starship init powershell)
+  if (Get-Command Enable-TransientPrompt -ErrorAction SilentlyContinue) {
+    Enable-TransientPrompt
+  }
+}
+'@
 
 # Resolve the actual profile path, including a redirected Documents folder.
+$lines = @()
 if (Test-Path -LiteralPath $PROFILE) {
   $lines = @(Get-Content -LiteralPath $PROFILE)
-  if ($lines.Where({ $_.Trim() -eq $activation }).Count -gt 0) {
-    Write-Host 'PowerShell mise activation is already configured.'
-    exit 0
-  }
+}
+
+$additions = @()
+if ($lines.Where({ $_.Trim() -eq $activation }).Count -eq 0) {
+  $additions += $activation
+}
+if ($lines.Where({ $_.Trim() -eq 'Invoke-Expression (&starship init powershell)' }).Count -eq 0) {
+  $additions += $starship
+}
+
+if ($additions.Count -eq 0) {
+  Write-Host 'PowerShell mise and Starship initialization is already configured.'
+  exit 0
 }
 
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PROFILE) | Out-Null
-Add-Content -LiteralPath $PROFILE -Value ([Environment]::NewLine + $activation)
-Write-Host 'Configured PowerShell mise activation. Open a new shell to activate it.'
+Add-Content -LiteralPath $PROFILE -Value ([Environment]::NewLine + ($additions -join ([Environment]::NewLine * 2)))
+Write-Host 'Configured PowerShell mise and Starship initialization. Open a new shell to activate it.'
 '''
