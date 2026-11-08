@@ -1,8 +1,8 @@
 # The built-in shell activation section does not support PowerShell.
+# We can't use dotfiles neither because $PROFILE location is different depends on installation methods
 [tasks.bootstrap]
 depends = ["configure-powershell"]
 
-# We can't use dotfiles because $PROFILE location is different depends on installation methods
 [tasks.configure-powershell]
 description = "Enable mise and Starship in the current user's PowerShell profile"
 shell = "pwsh -NoLogo -NoProfile -Command"
