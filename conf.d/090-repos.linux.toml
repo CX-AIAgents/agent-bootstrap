@@ -1,0 +1,7 @@
+# Install the interactive shell framework before deploying its configuration.
+[bootstrap.repos]
+"~/.oh-my-zsh" = { url = "https://github.com/ohmyzsh/ohmyzsh.git", depth = 1 }
+"~/.oh-my-zsh/custom/themes/powerlevel10k" = { url = "https://github.com/romkatv/powerlevel10k.git", depth = 1 }
+"~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" = { url = "https://github.com/zsh-users/zsh-syntax-highlighting.git", depth = 1 }
+"~/.oh-my-zsh/custom/plugins/zsh-autosuggestions" = { url = "https://github.com/zsh-users/zsh-autosuggestions.git", depth = 1 }
+"~/.oh-my-zsh/custom/plugins/ohmyzsh-full-autoupdate" = { url = "https://github.com/Pilaton/OhMyZsh-full-autoupdate.git", depth = 1 }

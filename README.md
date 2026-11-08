@@ -11,6 +11,7 @@ For both Windows and Linux:
 
 - A clean system
 - `mise` is installed, use default installation script
+- A terminal with a nerf font
 
 For Windows specific:
 

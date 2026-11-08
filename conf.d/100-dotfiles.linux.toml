@@ -1,6 +1,10 @@
-# Configure base command paths before activating mise.
+# Configure shell startup before activating mise.
 [dotfiles]
 "~/.zshenv/path-all-additions" = { source = "dotfiles/zsh-path.zsh", template = "tera" }
+"~/.zprofile/ssh-agent" = { source = "dotfiles/zsh-profile.zsh", template = "tera" }
+"~/.zshrc/interactive" = { source = "dotfiles/zsh-interactive.zsh", template = "tera" }
+"~/.p10k.zsh" = { source = "dotfiles/p10k.zsh", mode = "copy" } # using copy mode so p10k configure can edit it without changing the repository source.
+
 # fallback bash support, for ai agents who does not use zsh.
 "~/.bash_profile/local-bin" = { line = 'export PATH="$HOME/.local/bin:$PATH"', position = "prepend" }
 "~/.bashrc/local-bin" = { line = 'export PATH="$HOME/.local/bin:$PATH"', position = "prepend" }
