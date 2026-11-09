@@ -1,5 +1,6 @@
 # Configure shell startup before activating mise.
 [dotfiles]
+"~/.zshenv/env-var" = { source = "dotfiles/zsh-env-var.zsh", template = "tera" }
 "~/.zshenv/path-all-additions" = { source = "dotfiles/zsh-path.zsh", template = "tera" }
 "~/.zprofile/ssh-agent" = { source = "dotfiles/zsh-profile.zsh", template = "tera" }
 "~/.zshrc/interactive" = { source = "dotfiles/zsh-interactive.zsh", template = "tera" }
