@@ -30,6 +30,7 @@ markdownlint-cli2 = "latest"
 "pypi:jina-cli" = "latest"
 "pypi:ninja" = "latest"
 "pypi:yt-dlp" = { version = "latest", extras = "default" }
+"pypi:tools-registry" = { version = "latest", extras = "proxy", python = "3.13" } # treg
 
 # CLIs from other mise backends
 "github:redhat-et/ripwire" = "latest"
