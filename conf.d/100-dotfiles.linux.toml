@@ -1,10 +1,12 @@
 # Configure shell startup before activating mise.
 [dotfiles]
+# default of using `file/my-block` with a `template = "tara"` mode so that only portion of the file is sync from mise dotfiles. rest of the part can still be modified by user without being overwritten by `mise bootstrap`
+"~/.env_var/common-keys" = { source = "dotfiles/.env-var", template = "tera" }
 "~/.zshenv/env-var" = { source = "dotfiles/zsh-env-var.zsh", template = "tera" }
 "~/.zshenv/path-all-additions" = { source = "dotfiles/zsh-path.zsh", template = "tera" }
 "~/.zprofile/ssh-agent" = { source = "dotfiles/zsh-profile.zsh", template = "tera" }
 "~/.zshrc/interactive" = { source = "dotfiles/zsh-interactive.zsh", template = "tera" }
-"~/.p10k.zsh" = { source = "dotfiles/p10k.zsh", mode = "copy" } # using copy mode so p10k configure can edit it without changing the repository source.
+"~/.p10k.zsh" = { source = "dotfiles/p10k.zsh", mode = "copy", create_if_missing = true } # using copy mode and only copy on missing so another `mise bootstrap --update` will not overwrite any user's changes.
 
 # fallback bash support, for ai agents who does not use zsh.
 "~/.bash_profile/local-bin" = { line = 'export PATH="$HOME/.local/bin:$PATH"', position = "prepend" }
