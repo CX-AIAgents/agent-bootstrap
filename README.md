@@ -27,21 +27,11 @@ For linux specific:
 
 ## How to bootstrap
 
-```sh
-mise bootstrap --adopt "<repository-url or absolute-path-to-this-repository>"
-```
-
-Open the shell that has the `mise activate` (Zsh or PowerShell 7),
-then check:
+Clone this repo somewhere first,
+make sure don't delete your cloned copy
 
 ```sh
-mise bootstrap status
-```
-
-## How to update
-
-when you pushed new update to this repo, update your device
-
-```sh
-mise bootstrap --update
+mise run setup  # run the `mise bootstrap` from this repo
+mise run setup status # `mise bootstrap status`
+mise run setup --update # `mise bootstrap --update`
 ```
