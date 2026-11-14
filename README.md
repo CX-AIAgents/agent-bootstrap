@@ -1,6 +1,6 @@
 # Agent Bootstrap
 
-Engineering effort to manage bootstraping a new device,
+Engineering effort to manage bootstrapping a new device,
 powered by wonderful [`mise bootstrap`](https://mise.jdx.dev/bootstrap.html)
 
 Support both Windows and Linux (including WSL2)
