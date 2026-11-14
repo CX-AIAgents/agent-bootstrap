@@ -32,7 +32,7 @@ For linux specific:
 ### Option 1: Clone directly into `~/.config/mise`
 
 ```sh
-git clone <this repo> ~/.config/mise
+git clone <this-repo> ~/.config/mise
 cd ~/.config/mise
 
 # Optional: add any *.local.toml overrides before bootstrapping
@@ -46,11 +46,11 @@ mise bootstrap --update
 ### Option 2: Clone elsewhere and link `~/.config/mise` to it
 
 ```sh
-git clone <your-repo-url> /path/to/checkout
+git clone <this-repo> /path/to/checkout
 
 # Optional: add any *.local.toml overrides inside /path/to/checkout
 mise bootstrap \
-  --from <your-repo-url> \
+  --from <this-repo> \
   --from-dir /path/to/checkout \
   --config-dir .
 
