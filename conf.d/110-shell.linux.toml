@@ -1,3 +1,4 @@
+# These shell activation is equivalent of applying dotfile portion edits
 [bootstrap.mise_shell_activate]
 zsh = true
 bash = true # fallback bash support, for ai agents who does not use zsh.
