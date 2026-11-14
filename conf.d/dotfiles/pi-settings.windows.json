@@ -1,0 +1,3 @@
+{
+  "shellPath": {{ (exec(command="scoop prefix git") ~ "\\bin\\bash.exe") | json_encode }}
+}

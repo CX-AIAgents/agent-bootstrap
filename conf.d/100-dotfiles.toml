@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.pi/agent/keybindings.json/word-delete" = { source = "dotfiles/pi-keybindings.json", merge = true }
