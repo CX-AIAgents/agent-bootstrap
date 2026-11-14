@@ -27,11 +27,32 @@ For linux specific:
 
 ## How to bootstrap
 
-Clone this repo somewhere first,
-make sure don't delete your cloned copy
+### Option 1: Clone directly into `~/.config/mise`
 
 ```sh
-mise run setup  # run the `mise bootstrap` from this repo
-mise run setup status # `mise bootstrap status`
-mise run setup --update # `mise bootstrap --update`
+git clone <this repo> ~/.config/mise
+cd ~/.config/mise
+
+# Optional: add any *.local.toml overrides before bootstrapping
+mise bootstrap
+
+# To update
+mise bootstrap status
+mise bootstrap --update
+```
+
+### Option 2: Clone elsewhere and link `~/.config/mise` to it
+
+```sh
+git clone <your-repo-url> /path/to/checkout
+
+# Optional: add any *.local.toml overrides inside /path/to/checkout
+mise bootstrap \
+  --from <your-repo-url> \
+  --from-dir /path/to/checkout \
+  --config-dir .
+
+# Update
+mise bootstrap status
+mise bootstrap --update
 ```
