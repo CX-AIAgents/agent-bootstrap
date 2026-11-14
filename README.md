@@ -12,6 +12,9 @@ For both Windows and Linux:
 - A clean system
 - `mise` is installed, use default installation script
 - A terminal with a nerf font
+- git
+  - windows: `scoop install git`
+  - linux: `sudo apt install git`
 
 For Windows specific:
 
@@ -19,7 +22,6 @@ For Windows specific:
 - `scoop` installed
 - install followings:
   - latest Visual C++ via `winget install Microsoft.VCRedist.2015+.x64`
-  - git via `scoop install git`
 
 For linux specific:
 
