@@ -4,6 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 unsetopt NOMATCH
+bindkey '^H' backward-kill-word
 
 # Enable Oh My Zsh and plugins.
 export ZSH="$HOME/.oh-my-zsh"
