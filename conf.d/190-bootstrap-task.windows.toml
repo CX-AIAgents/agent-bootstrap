@@ -1,8 +1,10 @@
 [tasks.bootstrap]
+hide = true
 depends = ["export-env"]
 
 [tasks.export-env]
 description = "Import all env var from .env_var into persistent Windows user environment variables"
+hide = true
 dir = "{{mise_config_dir}}" # Global config's default task dir ({{config_root}}) is $HOME, not the mise config directory.
 shell = "pwsh -NoLogo -NoProfile -Command"
 usage = 'arg "[env_file]" default="conf.d/dotfiles/.env_var" help="Environment file, relative to mise_config_dir or absolute"'
