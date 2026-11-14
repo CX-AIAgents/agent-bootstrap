@@ -18,8 +18,8 @@ For both Windows and Linux:
 
 For Windows specific:
 
-- PowerShell 7 installed either via `winget` or MSIX installer (prefer to enable auto update by windows)
 - `scoop` installed
+- PowerShell 7 installed either via `winget` or MSIX installer (prefer to enable auto update by windows)
 - install followings:
   - latest Visual C++ via `winget install Microsoft.VCRedist.2015+.x64`
 

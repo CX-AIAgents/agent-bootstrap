@@ -2,12 +2,41 @@
 # Stage $PROFILE to a fixed path '.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1' before applying dotfiles, then copy it back afterwards.
 [bootstrap.hooks.pre-dotfiles]
 description = "Stage PowerShell $PROFILE to fixed path before applying dotfiles"
-run = '''pwsh -NoLogo -NoProfile -Command "$ErrorActionPreference = 'Stop'; $staged = Join-Path $HOME '.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1'; if (Test-Path -LiteralPath $PROFILE) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $staged) | Out-Null; Copy-Item -LiteralPath $PROFILE -Destination $staged -Force } elseif (Test-Path -LiteralPath $staged) { Remove-Item -LiteralPath $staged -Force }"'''
+run = "mise run stage-pwsh-profile"
 
 [bootstrap.hooks.post-dotfiles]
 description = "Copy staged PowerShell profile back to $PROFILE"
-run = '''pwsh -NoLogo -NoProfile -Command "$ErrorActionPreference = 'Stop'; $staged = Join-Path $HOME '.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1'; if (Test-Path -LiteralPath $staged) { New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PROFILE) | Out-Null; Copy-Item -LiteralPath $staged -Destination $PROFILE -Force }"'''
+run = "mise run restore-pwsh-profile"
+
+[tasks.stage-pwsh-profile]
+description = "Stage PowerShell $PROFILE to fixed path before applying dotfiles"
+hide = true
+shell = "pwsh -NoLogo -NoProfile -Command"
+run = '''
+$ErrorActionPreference = 'Stop'
+$staged = Join-Path $HOME '.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1'
+if (Test-Path -LiteralPath $PROFILE) {
+  New-Item -ItemType Directory -Force -Path (Split-Path -Parent $staged) | Out-Null
+  Copy-Item -LiteralPath $PROFILE -Destination $staged -Force
+} elseif (Test-Path -LiteralPath $staged) {
+  Remove-Item -LiteralPath $staged -Force
+}
+'''
+
+[tasks.restore-pwsh-profile]
+description = "Copy staged PowerShell profile back to $PROFILE"
+hide = true
+shell = "pwsh -NoLogo -NoProfile -Command"
+run = '''
+$ErrorActionPreference = 'Stop'
+$staged = Join-Path $HOME '.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1'
+if (Test-Path -LiteralPath $staged) {
+  New-Item -ItemType Directory -Force -Path (Split-Path -Parent $PROFILE) | Out-Null
+  Copy-Item -LiteralPath $staged -Destination $PROFILE -Force
+}
+'''
 
 [dotfiles]
 "~/.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1/mise-activate" = { source = "dotfiles/pwsh-mise.ps1", template = "tera" }
 "~/.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1/starship" = { source = "dotfiles/pwsh-starship.ps1", template = "tera" }
+"~/.pi/agent/settings.json/shell-path" = { source = "dotfiles/pi-settings.windows.json", template = "tera", merge = true }
