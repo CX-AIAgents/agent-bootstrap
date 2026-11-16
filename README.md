@@ -36,11 +36,8 @@ git clone <this-repo> ~/.config/mise
 cd ~/.config/mise
 
 # Optional: add any *.local.toml overrides before bootstrapping
+# Optional: create .env_var file in conf.d/dotfiles/
 mise bootstrap
-
-# To update
-mise bootstrap status
-mise bootstrap --update
 ```
 
 ### Option 2: Clone elsewhere and link `~/.config/mise` to it
@@ -49,12 +46,16 @@ mise bootstrap --update
 git clone <this-repo> /path/to/checkout
 
 # Optional: add any *.local.toml overrides inside /path/to/checkout
+# Optional: create .env_var file in conf.d/dotfiles/
 mise bootstrap \
   --from <this-repo> \
   --from-dir /path/to/checkout \
   --config-dir .
+```
 
-# Update
+## How to update
+
+```sh
 mise bootstrap status
 mise bootstrap --update
 ```
