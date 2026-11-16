@@ -15,6 +15,7 @@ ast-grep = "latest"
 gh = "latest"
 ripgrep = "latest"
 yq = "latest"
+fd = "latest"
 markdownlint-cli2 = "latest"
 
 # Node CLIs installed by mise
