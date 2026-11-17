@@ -45,7 +45,7 @@ mise bootstrap
 ```sh
 git clone <this-repo> /path/to/checkout
 
-# Optional: add any *.local.toml overrides inside /path/to/checkout
+# Optional: add any *.local.toml overrides before bootstrapping
 # Optional: create .env_var file in conf.d/dotfiles/
 mise bootstrap \
   --from <this-repo> \
