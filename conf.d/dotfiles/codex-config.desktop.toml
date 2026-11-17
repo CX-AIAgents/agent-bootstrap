@@ -1,0 +1,6 @@
+[desktop]
+enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "persistent", "max"]
+conversationDetailMode = "STEPS_COMMANDS"
+keepRemoteControlAwakeWhilePluggedIn = true
+show-context-window-usage = true
+composerEnterBehavior = "cmdAlways"

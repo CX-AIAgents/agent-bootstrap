@@ -1,3 +1,7 @@
 [dotfiles]
 # enable ctrl+backspace to delete word in Pi Coding Agent
 "~/.pi/agent/keybindings.json/word-delete" = { source = "dotfiles/pi-keybindings.json", merge = true }
+
+# Codex shared settings (enforced) and initial defaults (seeded when missing)
+"~/.codex/config.toml/shared" = { source = "dotfiles/codex-config.toml", merge = true }
+"~/.codex/config.toml/defaults" = { source = "dotfiles/codex-defaults.toml", merge = "missing" }
