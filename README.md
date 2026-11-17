@@ -32,7 +32,7 @@ For linux specific:
 ### Option 1: Clone directly into `~/.config/mise` (or `MISE_CONFIG_DIR`)
 
 ```sh
-git clone <this-repo> ~/.config/mise
+git clone https://github.com/CX-AIAgents/agent-bootstrap.git ~/.config/mise
 cd ~/.config/mise
 
 # Optional: add any *.local.toml overrides before bootstrapping
@@ -43,12 +43,12 @@ mise bootstrap
 ### Option 2: Clone elsewhere and link `~/.config/mise` (or `MISE_CONFIG_DIR`) to it
 
 ```sh
-git clone <this-repo> /path/to/checkout
+git clone https://github.com/CX-AIAgents/agent-bootstrap.git /path/to/checkout
 
 # Optional: add any *.local.toml overrides before bootstrapping
 # Optional: create .env_var file in conf.d/dotfiles/
 mise bootstrap \
-  --from <this-repo> \
+  --from https://github.com/CX-AIAgents/agent-bootstrap.git \
   --from-dir /path/to/checkout \
   --config-dir .
 ```
