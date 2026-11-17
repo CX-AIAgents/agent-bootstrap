@@ -29,7 +29,7 @@ For linux specific:
 
 ## How to bootstrap
 
-### Option 1: Clone directly into `~/.config/mise`
+### Option 1: Clone directly into `~/.config/mise` (or `MISE_CONFIG_DIR`)
 
 ```sh
 git clone <this-repo> ~/.config/mise
@@ -40,7 +40,7 @@ cd ~/.config/mise
 mise bootstrap
 ```
 
-### Option 2: Clone elsewhere and link `~/.config/mise` to it
+### Option 2: Clone elsewhere and link `~/.config/mise` (or `MISE_CONFIG_DIR`) to it
 
 ```sh
 git clone <this-repo> /path/to/checkout
