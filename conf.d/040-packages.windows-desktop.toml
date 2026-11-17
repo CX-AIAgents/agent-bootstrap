@@ -1,0 +1,27 @@
+[bootstrap.hooks.pre-packages]
+description = "Ensure custom Scoop buckets are added before installing packages"
+run = "mise run --skip-tools add-scoop-buckets"
+
+[bootstrap.packages]
+"scoop:backit/elyterminal" = "latest"
+"scoop:extras/openidea" = "latest"
+
+[tasks.add-scoop-buckets]
+description = "Ensure custom Scoop buckets are added before installing packages"
+hide = true
+shell = "pwsh -NoLogo -NoProfile -Command"
+run = '''
+$ErrorActionPreference = 'Stop'
+$customBuckets = @{
+  'backit' = 'https://github.com/batkiz/backit'
+}
+$installed = @(scoop bucket list | ForEach-Object { $_.Name })
+foreach ($entry in $customBuckets.GetEnumerator()) {
+  if ($installed -notcontains $entry.Key) {
+    scoop bucket add $entry.Key $entry.Value
+    if ($LASTEXITCODE -ne 0) {
+      throw "Failed to add Scoop bucket '$($entry.Key)'"
+    }
+  }
+}
+'''
