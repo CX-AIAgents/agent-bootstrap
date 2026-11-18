@@ -37,7 +37,7 @@ if (Test-Path -LiteralPath $staged) {
 '''
 
 [dotfiles]
-"~/.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1/mise-activate" = { source = "dotfiles/pwsh-mise.ps1", template = "tera" }
-"~/.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1/starship" = { source = "dotfiles/pwsh-starship.ps1", template = "tera" }
-"~/.pi/agent/settings.json/shell-path" = { source = "dotfiles/pi-settings.windows.json", template = "tera", merge = true }
-"~/.codex/config.toml/windows" = { source = "dotfiles/codex-config.windows.toml", merge = true }
+"~/.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1/mise-activate" = { source = "dotfiles/terminal/pwsh-mise.ps1", template = "tera" }
+"~/.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1/starship" = { source = "dotfiles/terminal/pwsh-starship.ps1", template = "tera" }
+"~/.pi/agent/settings.json/shell-path" = { source = "dotfiles/ai-agent-config/pi-settings.windows.json", template = "tera", merge = true }
+"~/.codex/config.toml/windows" = { source = "dotfiles/ai-agent-config/codex-config.windows.toml", merge = true }

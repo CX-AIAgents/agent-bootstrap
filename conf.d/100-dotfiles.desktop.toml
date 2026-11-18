@@ -1,2 +1,2 @@
 [dotfiles]
-"~/.codex/config.toml/desktop" = { source = "dotfiles/codex-config.desktop.toml", merge = true }
+"~/.codex/config.toml/desktop" = { source = "dotfiles/ai-agent-config/codex-config.desktop.toml", merge = true }
