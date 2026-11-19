@@ -1,12 +1,29 @@
 # PowerShell's $PROFILE path varies by installation method and Documents folder redirection.
 # Stage $PROFILE to a fixed path '.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1' before applying dotfiles, then copy it back afterwards.
 [bootstrap.hooks.pre-dotfiles]
-description = "Stage PowerShell $PROFILE to fixed path before applying dotfiles"
-run = "mise run stage-pwsh-profile"
+description = "Seed missing local dotfile templates and stage PowerShell $PROFILE before applying dotfiles"
+run = [
+  "mise run --skip-tools seed-winget-settings",
+  "mise run --skip-tools stage-pwsh-profile",
+]
 
 [bootstrap.hooks.post-dotfiles]
 description = "Copy staged PowerShell profile back to $PROFILE"
-run = "mise run restore-pwsh-profile"
+run = "mise run --skip-tools restore-pwsh-profile"
+
+[tasks.seed-winget-settings]
+description = "Copy winget-settings.json.template to winget-settings.json if missing"
+hide = true
+dir = "{{mise_config_dir}}" # Global config's default task dir ({{config_root}}) is $HOME, not the mise config directory.
+shell = "pwsh -NoLogo -NoProfile -Command"
+run = '''
+$ErrorActionPreference = 'Stop'
+$template = Join-Path (Get-Location) 'conf.d/dotfiles/winget-settings.json.template'
+$target = Join-Path (Get-Location) 'conf.d/dotfiles/winget-settings.json'
+if (-not (Test-Path -LiteralPath $target)) {
+  Copy-Item -LiteralPath $template -Destination $target
+}
+'''
 
 [tasks.stage-pwsh-profile]
 description = "Stage PowerShell $PROFILE to fixed path before applying dotfiles"
@@ -41,3 +58,4 @@ if (Test-Path -LiteralPath $staged) {
 "~/.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1/starship" = { source = "dotfiles/terminal/pwsh-starship.ps1", template = "tera" }
 "~/.pi/agent/settings.json/shell-path" = { source = "dotfiles/ai-agent-config/pi-settings.windows.json", template = "tera", merge = true }
 "~/.codex/config.toml/windows" = { source = "dotfiles/ai-agent-config/codex-config.windows.toml", merge = true }
+"~/AppData/Local/Packages/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe/LocalState/settings.json/winget-settings" = { source = "dotfiles/winget-settings.json", merge = true, format = "jsonc" } # this path may not be stable, if we found out the path is wrong on a device, consider to use the same `$PROFILE` staging approach as we did for PowerShell profile

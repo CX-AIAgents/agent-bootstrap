@@ -1,0 +1,13 @@
+{
+  "$schema": "https://aka.ms/winget-settings.schema.json",
+  // For documentation on these settings, see: https://aka.ms/winget-settings
+  // "installBehavior": {
+  //   // These two only work for portable apps
+  //   "portablePackageMachineRoot": "D:/local/winget/packages/",
+  //   "portablePackageUserRoot": "D:/local/winget/packages/",
+  //   "defaultInstallRoot": "D:/local/winget/",
+  //   "preferences": {
+  //     "scope": "user"
+  //   }
+  // }
+}
