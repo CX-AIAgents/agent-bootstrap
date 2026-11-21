@@ -12,3 +12,4 @@
 "apt:tmux" = "latest"
 "apt:unzip" = "latest"
 "apt:bubblewrap" = "latest"
+"apt:zstd" = "latest" # needed by deja-vu
