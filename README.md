@@ -11,6 +11,7 @@ Support both Windows and Linux (including WSL2)
   - [2. Customize](#2-customize)
   - [3. Run `mise bootstrap`](#3-run-mise-bootstrap)
   - [4. To update later](#4-to-update-later)
+- [What are not tracked](#what-are-not-tracked)
 
 ## Prerequisites
 
@@ -86,3 +87,12 @@ mise bootstrap --update
 ```
 
 `--update` refreshes package metadata, git pull the repo, then apply the config. It’s safe to run multiple times.
+
+## What are not tracked
+
+This repo can track many things but the following are so not tracked by design:
+
+1. Settings of dependencies needed by `mise bootstrap`: such as `scoop` and `winget` settings
+2. Anything sensitive: while the `.env_var` has a template file to help you add API keys in env var. Other configs such as SSH, `gws` config files, any AI Agents config files that contains API keys, are not tracked.
+3. Agent Skills: currently are tracked on a dedicated repo, with a dedicated push script to push to common location such as `~/.agents/skills`
+
