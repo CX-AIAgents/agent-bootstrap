@@ -36,6 +36,7 @@ markdownlint-cli2 = "latest"
 # CLIs from other mise backends
 "github:redhat-et/ripwire" = "latest"
 "conda:mediainfo" = "latest"
+"github:vshulcz/deja-vu" = "latest"
 
 [settings]
 java.shorthand_vendor = "liberica"
