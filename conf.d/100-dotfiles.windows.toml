@@ -58,4 +58,4 @@ if (Test-Path -LiteralPath $staged) {
 "~/.config/mise-bootstrap/Microsoft.PowerShell_profile.ps1/starship" = { source = "dotfiles/terminal/pwsh-starship.ps1", template = "tera" }
 "~/.pi/agent/settings.json/shell-path" = { source = "dotfiles/ai-agent-config/pi-settings.windows.json", template = "tera", merge = true }
 "~/.codex/config.toml/windows" = { source = "dotfiles/ai-agent-config/codex-config.windows.toml", merge = true }
-"~/AppData/Local/Packages/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe/LocalState/settings.json/winget-settings" = { source = "dotfiles/winget-settings.json", merge = true, format = "jsonc" } # this path may not be stable, if we found out the path is wrong on a device, consider to use the same `$PROFILE` staging approach as we did for PowerShell profile
+# "~/AppData/Local/Packages/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe/LocalState/settings.json/winget-settings" = { source = "dotfiles/winget-settings.json", merge = true, format = "jsonc" } # disabled for now, I think winget should be simiar situation to scoop, where it should be already preconfigured correctly before running mise bootstrap
