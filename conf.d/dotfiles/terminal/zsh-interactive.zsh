@@ -5,6 +5,7 @@ fi
 
 unsetopt NOMATCH
 bindkey '^H' backward-kill-word
+bindkey '^[[3;5~' kill-word
 
 # Enable Oh My Zsh and plugins.
 export ZSH="$HOME/.oh-my-zsh"

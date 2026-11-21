@@ -5,6 +5,7 @@ run = "mise run --skip-tools add-scoop-buckets"
 [bootstrap.packages]
 "scoop:backit/elyterminal" = "latest"
 "scoop:extras/openidea" = "latest"
+"scoop:nerd-fonts/Meslo-NF" = "latest"
 
 [tasks.add-scoop-buckets]
 description = "Ensure custom Scoop buckets are added before installing packages"
