@@ -25,7 +25,7 @@ For both Windows and Linux:
 For Windows specific:
 
 - `scoop` and `winget` installed, and **configured**
-  - if you need `scoop` and `winget` to install on different drive, do it here now before `mise bootstrap`
+  - if you need `scoop` and `winget` to install tools on different drive, configure it before `mise bootstrap`
 - PowerShell 7 installed (prefer to enable auto update by windows)
 - install followings:
   - latest Visual C++ via `winget install Microsoft.VCRedist.2015+.x64`
