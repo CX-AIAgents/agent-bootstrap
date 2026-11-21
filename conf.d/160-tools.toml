@@ -17,6 +17,7 @@ ripgrep = "latest"
 yq = "latest"
 fd = "latest"
 markdownlint-cli2 = "latest"
+sqlite = "latest"
 
 # Node CLIs installed by mise
 "npm:@openai/codex" = { version = "latest", npm_args = "--ignore-scripts=false" }

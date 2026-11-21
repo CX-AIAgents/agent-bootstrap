@@ -5,3 +5,4 @@
 "scoop:fzf" = "latest"
 "scoop:psmux" = "latest"
 "scoop:starship" = "latest"
+"scoop:zstd" = "latest" # needed by deja-vu
