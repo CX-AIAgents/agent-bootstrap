@@ -1,4 +1,4 @@
 # Windows additions for 160-tools.toml
 [tools]
 # Install Pi using npm package due to https://github.com/earendil-works/pi/issues/5103#issuecomment-4800593433
-"npm:@earendil-works/pi-coding-agent" = { version = "latest", npm_args = "--ignore-scripts=false" }
+

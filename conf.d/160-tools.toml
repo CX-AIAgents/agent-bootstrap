@@ -9,6 +9,12 @@ java = "lts"
 node = "lts"
 bun = "latest"
 
+# AI Agents
+"npm:@earendil-works/pi-coding-agent" = { version = "latest", npm_args = "--ignore-scripts=false" }
+"npm:@openai/codex" = { version = "latest", npm_args = "--ignore-scripts=false" }
+# Use fixed version on deepseek harness as it is too new, an update will likely break many plugins
+"npm:@deepseek-ai/dsh" = { version = "0.2.2-rc5", npm_args = "--ignore-scripts=false" }
+
 # CLI tools
 ffmpeg = "latest"
 ast-grep = "latest"
@@ -18,23 +24,16 @@ yq = "latest"
 fd = "latest"
 markdownlint-cli2 = "latest"
 sqlite = "latest"
-
-# Node CLIs installed by mise
-"npm:@openai/codex" = { version = "latest", npm_args = "--ignore-scripts=false" }
 "npm:agent-browser" = { version = "latest", npm_args = "--ignore-scripts=false" }
 "npm:@googleworkspace/cli" = { version = "latest", npm_args = "--ignore-scripts=false" }
 # Allow future OpenCLI releases without provenance: https://github.com/jackwener/OpenCLI/issues/2622
 "npm:@jackwener/opencli" = { version = "latest", npm_args = "--ignore-scripts=false", trust_policy_excludes = ["@jackwener/opencli"] }
 "npm:@officecli/officecli" = { version = "latest", npm_args = "--ignore-scripts=false" }
-
-# Python CLIs installed by mise through uv
 "pypi:ast-outline" = { version = "latest", python = "3.14" } # tree-sitter 0.26.0 has no Python 3.15 wheels.
 "pypi:jina-cli" = "latest"
 "pypi:ninja" = "latest"
 "pypi:yt-dlp" = { version = "latest", extras = "default" }
 "pypi:tools-registry" = { version = "latest", extras = "proxy", python = "3.13" } # treg
-
-# CLIs from other mise backends
 "github:redhat-et/ripwire" = "latest"
 "conda:mediainfo" = "latest"
 "github:vshulcz/deja-vu" = "latest"
