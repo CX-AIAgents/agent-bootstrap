@@ -1,0 +1,25 @@
+# My own permission which is basically just yolo mode with an auto reviewer
+approval_policy = "on-request"
+approvals_reviewer = "auto_review"
+default_permissions = "my-default"
+
+[permissions.my-default]
+description = "Default free environment for my agents"
+
+[permissions.my-default.filesystem]
+":root" = "write" # Required so commands like git commit can run
+":minimal" = "write"
+":workspace_roots" = "write"
+":tmpdir" = "write"
+":slash_tmp" = "write"
+"~" = "write"
+
+[permissions.my-default.network]
+enabled = true
+enable_socks5 = true
+enable_socks5_udp = true
+allow_upstream_proxy = true
+allow_local_binding = true
+
+[permissions.my-default.network.domains]
+"*" = "allow"

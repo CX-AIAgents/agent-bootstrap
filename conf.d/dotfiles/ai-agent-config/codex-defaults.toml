@@ -1,4 +1,3 @@
 model = "gpt-6-astra"
 model_reasoning_effort = "xhigh"
-personality = "none"
 service_tier = "default"

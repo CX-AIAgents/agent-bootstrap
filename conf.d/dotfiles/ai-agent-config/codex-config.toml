@@ -1,28 +1,8 @@
-approval_policy = "on-request"
-approvals_reviewer = "auto_review"
-default_permissions = "my-default"
+# Shared configs
 web_search = "live" # can set to cached, but there is no pricing difference so far, so leave it as live
 
-[permissions.my-default]
-description = "Default free environment for my agents"
-
-[permissions.my-default.filesystem]
-":root" = "write" # Required so commands like git commit can run
-":minimal" = "write"
-":workspace_roots" = "write"
-":tmpdir" = "write"
-":slash_tmp" = "write"
-"~" = "write"
-
-[permissions.my-default.network]
-enabled = true
-enable_socks5 = true
-enable_socks5_udp = true
-allow_upstream_proxy = true
-allow_local_binding = true
-
-[permissions.my-default.network.domains]
-"*" = "allow"
+# Match GPT-6.2 Sol's default Codex context window.
+model_context_window = 500_000
 
 [tui]
 status_line = ["model-with-reasoning", "context-remaining", "current-dir", "git-branch", "five-hour-limit", "weekly-limit"]
