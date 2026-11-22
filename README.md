@@ -93,6 +93,6 @@ mise bootstrap --update
 This repo can track many things but the following are so not tracked by design:
 
 1. Settings of dependencies needed by `mise bootstrap`: such as `scoop` and `winget` settings
-2. Anything sensitive: while the `.env_var` has a template file to help you add API keys in env var. Other configs such as SSH, `gws` config files, any AI Agents config files that contains API keys, are not tracked.
-3. Agent Skills: currently are tracked on a dedicated repo, with a dedicated push script to push to common location such as `~/.agents/skills`
-
+2. Anything sensitive: while the `.env_var` has a template file to help you add API keys in env var. Other configs such as SSH, `gws` config files, any AI Agents config files that contains API keys, terminal profiles containing IP addresses, are not tracked.
+3. Agent Skills and AGENTS.md: currently are tracked on a dedicated repo, with a dedicated push script to push to common location such as `~/.agents/skills`
+4. Services Login: ChatGPT App Login, Pi Coding Agent ChatGPT login, etc. Please login manually after bootstrap.
