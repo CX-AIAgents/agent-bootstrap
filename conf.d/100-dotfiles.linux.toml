@@ -1,7 +1,7 @@
 # Configure shell startup before activating mise.
 [dotfiles]
 # default of using `file/my-block` with a `template = "tara"` mode so that only portion of the file is sync from mise dotfiles. rest of the part can still be modified by user without being overwritten by `mise bootstrap`
-"~/.env_var/common-keys" = { source = "dotfiles/.env-var", template = "tera" }
+"~/.env_var/common-keys" = { source = "dotfiles/.env_var", template = "tera" }
 "~/.zshenv/env-var" = { source = "dotfiles/terminal/zsh-env-var.zsh", template = "tera" }
 "~/.zshenv/path-all-additions" = { source = "dotfiles/terminal/zsh-path.zsh", template = "tera" }
 "~/.zprofile/ssh-agent" = { source = "dotfiles/terminal/zsh-profile.zsh", template = "tera" }
