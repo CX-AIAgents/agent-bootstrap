@@ -1,6 +1,0 @@
-
-[tasks.setup]
-# The task named bootstrap is reserved for mise bootstrap's final setup step.
-description = "Run mise bootstrap with optional subcommands and flags"
-# mise forwards arguments after the task name to this command.
-run = "mise bootstrap"
