@@ -1,0 +1,19 @@
+services:
+  sandbox:
+    image: ubuntu:24.04
+    command: ["bash", "/tmp/prepare.sh"]
+    stdin_open: true
+    tty: true
+    network_mode: bridge
+    volumes:
+      - type: bind
+        source: ./prepare.sh
+        target: /tmp/prepare.sh
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ../..
+        target: /home/ubuntu/.config/mise
+        bind:
+          create_host_path: false

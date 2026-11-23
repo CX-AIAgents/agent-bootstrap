@@ -1,2 +1,3 @@
 *.toml text eol=lf
 *.zsh text eol=lf
+tests/linux/*.sh text eol=lf
