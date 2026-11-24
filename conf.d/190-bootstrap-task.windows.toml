@@ -3,50 +3,67 @@ hide = true
 depends = ["export-env"]
 
 [tasks.export-env]
-description = "Import all env var from .env_var into persistent Windows user environment variables"
+description = "Import env vars from .env_var (and optional .env_var.windows) into persistent Windows user environment variables"
 hide = true
 dir = "{{mise_config_dir}}" # Global config's default task dir ({{config_root}}) is $HOME, not the mise config directory.
 shell = "pwsh -NoLogo -NoProfile -Command"
-usage = 'arg "[env_file]" default="conf.d/dotfiles/.env_var" help="Environment file, relative to mise_config_dir or absolute"'
+usage = 'arg "[env_file]" help="Environment file, relative to mise_config_dir or absolute (defaults to conf.d/dotfiles/.env_var plus optional conf.d/dotfiles/.env_var.windows)"'
 run = '''
 $ErrorActionPreference = 'Stop'
-$envFile = $env:usage_env_file
-if (-not [System.IO.Path]::IsPathRooted($envFile)) {
-  $envFile = Join-Path (Get-Location) $envFile
-}
-if (-not (Test-Path -LiteralPath $envFile)) {
-  throw "Env file not found: $envFile"
+$envFiles = @()
+if (-not [string]::IsNullOrWhiteSpace($env:usage_env_file)) {
+  $envFile = $env:usage_env_file
+  if (-not [System.IO.Path]::IsPathRooted($envFile)) {
+    $envFile = Join-Path (Get-Location) $envFile
+  }
+  if (-not (Test-Path -LiteralPath $envFile)) {
+    throw "Env file not found: $envFile"
+  }
+  $envFiles += $envFile
+} else {
+  $baseFile = Join-Path (Get-Location) 'conf.d/dotfiles/.env_var'
+  if (-not (Test-Path -LiteralPath $baseFile)) {
+    throw "Env file not found: $baseFile"
+  }
+  $envFiles += $baseFile
+
+  $winFile = Join-Path (Get-Location) 'conf.d/dotfiles/.env_var.windows'
+  if (Test-Path -LiteralPath $winFile) {
+    $envFiles += $winFile
+  }
 }
 
-$lineNumber = 0
 $setCount = 0
 $unchangedCount = 0
-foreach ($rawLine in Get-Content -LiteralPath $envFile) {
-  $lineNumber++
-  $line = $rawLine.Trim()
-  if ($line -eq '' -or $line.StartsWith('#')) { continue }
-  if ($line -notmatch '^export\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$') {
-    Write-Warning "Skipping line ${lineNumber}: expected export NAME=value"
-    continue
-  }
+foreach ($envFile in $envFiles) {
+  $lineNumber = 0
+  foreach ($rawLine in Get-Content -LiteralPath $envFile) {
+    $lineNumber++
+    $line = $rawLine.Trim()
+    if ($line -eq '' -or $line.StartsWith('#')) { continue }
+    if ($line -notmatch '^export\s+([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$') {
+      Write-Warning "Skipping ${envFile}:${lineNumber}: expected export NAME=value"
+      continue
+    }
 
-  $name = $Matches[1]
-  $value = $Matches[2].Trim()
-  if (($value.Length -ge 2) -and (($value[0] -eq '"' -and $value[$value.Length - 1] -eq '"') -or ($value[0] -eq "'" -and $value[$value.Length - 1] -eq "'"))) {
-    $value = $value.Substring(1, $value.Length - 2)
-  }
+    $name = $Matches[1]
+    $value = $Matches[2].Trim()
+    if (($value.Length -ge 2) -and (($value[0] -eq '"' -and $value[$value.Length - 1] -eq '"') -or ($value[0] -eq "'" -and $value[$value.Length - 1] -eq "'"))) {
+      $value = $value.Substring(1, $value.Length - 2)
+    }
 
-  $currentValue = [Environment]::GetEnvironmentVariable($name, 'User')
-  if ($null -ne $currentValue -and $currentValue -ceq $value) {
-    Write-Host "Unchanged user env var: $name"
-    $unchangedCount++
-    continue
-  }
+    $currentValue = [Environment]::GetEnvironmentVariable($name, 'User')
+    if ($null -ne $currentValue -and $currentValue -ceq $value) {
+      Write-Host "Unchanged user env var: $name"
+      $unchangedCount++
+      continue
+    }
 
-  [Environment]::SetEnvironmentVariable($name, $value, 'User')
-  Set-Item -Path "Env:$name" -Value $value
-  Write-Host "Set user env var: $name"
-  $setCount++
+    [Environment]::SetEnvironmentVariable($name, $value, 'User')
+    Set-Item -Path "Env:$name" -Value $value
+    Write-Host "Set user env var: $name"
+    $setCount++
+  }
 }
 Write-Host "Done. Set $setCount user env var(s); $unchangedCount already unchanged. Restart terminals/apps to pick up changes."
 '''
