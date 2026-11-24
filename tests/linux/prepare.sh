@@ -17,11 +17,9 @@ passwd -d ubuntu >/dev/null
 cd /home/ubuntu
 # Docker can create this parent as root when the project is bind-mounted.
 install -d -o ubuntu -g ubuntu .config
-runuser -u ubuntu -- mkdir -p .config/mise
 # Docker Desktop can present a writable host checkout as root-owned inside the guest.
 runuser -u ubuntu -- git config --global --add safe.directory /home/ubuntu/.config/mise
-runuser -u ubuntu -- curl -fsSL --retry 3 https://mise.run -o /tmp/install-mise.sh
-runuser -u ubuntu -- sh /tmp/install-mise.sh
+curl -fsSL --retry 3 https://mise.run | runuser -u ubuntu -- sh
 runuser -u ubuntu -- .local/bin/mise --version
 
 printf '\nREADY  Prerequisites installed. Use ~/.config/mise for your project.\n'
