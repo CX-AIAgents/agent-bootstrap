@@ -1,6 +1,7 @@
 [tasks.bootstrap]
 hide = true
 depends = ["export-env"]
+# can't add cua-driver installation via official script as it relies on D drive installation
 
 [tasks.export-env]
 description = "Import env vars from .env_var (and optional .env_var.windows) into persistent Windows user environment variables"
