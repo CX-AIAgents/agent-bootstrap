@@ -14,6 +14,7 @@ bun = "latest"
 "npm:@openai/codex" = { version = "latest", npm_args = "--ignore-scripts=false" }
 # Use fixed version on deepseek harness as it is too new, an update will likely break many plugins
 "npm:@deepseek-ai/dsh" = { version = "0.2.2-rc.5", npm_args = "--ignore-scripts=false" }
+antigravity-cli = "latest"
 
 # CLI tools
 ffmpeg = "latest"
