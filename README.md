@@ -53,7 +53,10 @@ cd ~/.config/mise
 Use VSCode to open this repo, and do following customize:
 
 1. [`miserc.local.toml`](miserc.local.toml): set your profile, windows please set "desktop"
-2. [`.env_var.template`](conf.d\dotfiles\.env_var.template): copy `.env_var.template` into `.env_var` at the same folder, and add any API keys. On Windows, optionally copy [`.env_var.windows.template`](conf.d\dotfiles\.env_var.windows.template) into `.env_var.windows` for Windows-only paths (such as `D:\` tool directories), and [`elyterminal-profiles.json.template`](conf.d/dotfiles/terminal/elyterminal-profiles.json.template) into `elyterminal-profiles.json` for personal ELYTerminal profiles
+2. Copy and fill in the following `.template` files:
+   1. [`.env_var.template`](conf.d\dotfiles\.env_var.template): copy `.env_var.template` into `.env_var` at the same folder, and add any API keys.
+   2. [`.env_var.windows.template`](conf.d\dotfiles\.env_var.windows.template): same as above, but for windows only.
+   3. [`elyterminal-profiles.json.template`](conf.d\dotfiles\terminal\elyterminal-profiles.json.template): copy into `elyterminal-profiles.json` and add your own terminal profiles.
 3. Finally, add any `.local.toml` to customize any settings for this current device, without being tracked by git
 
 ### 3. Run `mise bootstrap`
