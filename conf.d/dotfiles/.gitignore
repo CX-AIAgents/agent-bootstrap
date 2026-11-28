@@ -1,3 +1,4 @@
 .env_var
 .env_var.windows
 winget-settings.json
+terminal/elyterminal-profiles.json

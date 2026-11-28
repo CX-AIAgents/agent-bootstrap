@@ -1,0 +1,14 @@
+{
+  "profiles": [
+    {
+      "name": "Example SSH",
+      "command": "ssh user@example.com",
+      "folder": ""
+    },
+    {
+      "name": "Example PowerShell",
+      "command": "pwsh.exe -NoLogo",
+      "folder": ""
+    }
+  ]
+}

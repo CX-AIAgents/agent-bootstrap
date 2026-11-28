@@ -1,0 +1,22 @@
+[bootstrap.hooks.pre-dotfiles]
+description = "Seed empty local ELYTerminal profiles file if missing"
+run = "mise run --skip-tools seed-elyterminal-profiles"
+
+[tasks.seed-elyterminal-profiles]
+description = "Create empty elyterminal-profiles.json if missing (see elyterminal-profiles.json.template for examples)"
+hide = true
+dir = "{{mise_config_dir}}" # Global config's default task dir ({{config_root}}) is $HOME, not the mise config directory.
+shell = "pwsh -NoLogo -NoProfile -Command"
+run = '''
+$ErrorActionPreference = 'Stop'
+$target = Join-Path (Get-Location) 'conf.d/dotfiles/terminal/elyterminal-profiles.json'
+if (-not (Test-Path -LiteralPath $target)) {
+  Set-Content -LiteralPath $target -Value '{}' -Encoding utf8NoBOM
+}
+'''
+
+[dotfiles]
+# ELYTerminal settings: enforced base config, seeded-once defaults, and local untracked profiles
+"~/AppData/Roaming/ELYTerminal/settings.json/base" = { source = "dotfiles/terminal/elyterminal-settings.json", merge = true }
+"~/AppData/Roaming/ELYTerminal/settings.json/defaults" = { source = "dotfiles/terminal/elyterminal-defaults.json", merge = "missing" }
+"~/AppData/Roaming/ELYTerminal/settings.json/profiles" = { source = "dotfiles/terminal/elyterminal-profiles.json", merge = true }
