@@ -1,0 +1,45 @@
+# Global tasks available after bootstrap (outside the bootstrap run order).
+# To add or override this update task:
+# - Either implement [tasks."global:update-tools:local"] to append extra steps,
+# - Or override [tasks."global:update-tools"] to customize the entire sequence.
+[tasks."global:update-tools"]
+description = "Update global tools, package managers, and agent extensions"
+run = [
+  { task = "global:update-tools:mise" },
+  { task = "global:update-tools:pnpm" },
+  { task = "global:update-tools:uv" },
+  { task = "global:update-tools:pi" },
+  { task = "global:update-tools:local" },
+]
+
+[tasks."global:update-tools:mise"]
+description = "Update global mise-managed tools and prune unused versions"
+run = [
+  '"{{mise_bin}}" upgrade --global',
+  '"{{mise_bin}}" prune --tools -y',
+]
+
+[tasks."global:update-tools:pnpm"]
+description = "Update global packages managed directly by pnpm"
+run = [
+  '"{{mise_bin}}" exec -- pnpm update --global --latest',
+  '"{{mise_bin}}" exec -- pnpm store prune',
+]
+
+[tasks."global:update-tools:uv"]
+description = "Update Python CLI tools managed directly by uv"
+run = [
+  '"{{mise_bin}}" exec -- uv tool upgrade --all',
+  '"{{mise_bin}}" exec -- uv cache prune',
+]
+
+[tasks."global:update-tools:pi"]
+description = "Update installed Pi extensions"
+run = '"{{mise_bin}}" exec -- pi update --extensions'
+
+# No-op hook for device-specific updates.
+[tasks."global:update-tools:local"]
+description = "No-op hook for device-specific updates (implement this or override global:update-tools in config.local.toml)"
+hide = true
+silent = true
+run = "exit 0"

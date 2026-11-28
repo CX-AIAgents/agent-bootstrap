@@ -57,7 +57,7 @@ Use VSCode to open this repo, and do following customize:
    1. [`.env_var.template`](conf.d\dotfiles\.env_var.template): copy `.env_var.template` into `.env_var` at the same folder, and add any API keys.
    2. [`.env_var.windows.template`](conf.d\dotfiles\.env_var.windows.template): same as above, but for windows only.
    3. [`elyterminal-profiles.json.template`](conf.d\dotfiles\terminal\elyterminal-profiles.json.template): copy into `elyterminal-profiles.json` and add your own terminal profiles.
-3. Finally, add any `.local.toml` to customize any settings for this current device, without being tracked by git
+3. Finally, add any `conf.d/zz-*.local.toml` (where `zz` prefix make sure it is loaded after non-local files) to customize any settings for this current device, without being tracked by git
 
 ### 3. Run `mise bootstrap`
 
@@ -84,12 +84,20 @@ mise bootstrap \
 
 ### 4. To update later
 
+To pull repository changes and re-apply bootstrap config:
+
 ```sh
 mise bootstrap status
 mise bootstrap --update
 ```
 
 `--update` refreshes package metadata, git pull the repo, then apply the config. It’s safe to run multiple times.
+
+To upgrade all installed tools:
+
+```sh
+mise run global:update-tools
+```
 
 ## What are not tracked
 

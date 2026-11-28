@@ -1,0 +1,34 @@
+# Windows overrides and additions for global-tasks.toml.
+[tasks."global:update-tools"]
+description = "Update Scoop, global tools, agent extensions, and cua-driver"
+run = [
+  { task = "global:update-tools:scoop" },
+  { task = "global:update-tools:mise" },
+  { task = "global:update-tools:pnpm" },
+  { task = "global:update-tools:uv" },
+  { task = "global:update-tools:pi" },
+  { task = "global:update-tools:cua" },
+  { task = "global:update-tools:local" },
+]
+
+[tasks."global:update-tools:scoop"]
+description = "Update Scoop and installed Scoop packages"
+run = [
+  "scoop update",
+  "scoop update --all",
+  "scoop cleanup --all",
+]
+
+[tasks."global:update-tools:cua"]
+description = "Update cua-driver if installed"
+shell = "pwsh -NoLogo -NoProfile -Command"
+run = '''
+$ErrorActionPreference = 'Stop'
+if (Get-Command cua-driver -ErrorAction SilentlyContinue) {
+  $global:LASTEXITCODE = 0
+  cua-driver update --apply
+  if ($LASTEXITCODE -ne 0) { throw "cua-driver update failed with exit code $LASTEXITCODE" }
+} else {
+  Write-Host 'Skipping cua-driver update (not installed)'
+}
+'''
